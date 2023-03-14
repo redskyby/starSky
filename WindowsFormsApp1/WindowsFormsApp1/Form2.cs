@@ -12,6 +12,10 @@ namespace WindowsFormsApp1
 {
     public partial class Form2 : Form
     {
+        int StarСount = 0;
+        int StarSpeed = 0;
+        int StarSize = 0;
+
         public class Star
         {
             public float X { get; set; }
@@ -19,16 +23,21 @@ namespace WindowsFormsApp1
             public float Z { get; set; }
         }
 
-        private Star[] stars = new Star[15000];
+        //private Star[] stars = new Star[15000];
 
+        private Star[] stars ;
         private Random random = new Random();
 
         private Graphics graphics;
 
-        public Form2()
+        public Form2(int Count , int Speed , int Size)
         {
             InitializeComponent();
-        }
+            StarСount = Count;
+            stars = new Star[StarСount];
+            StarSpeed = Speed;
+            StarSize = Size;
+    }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -45,7 +54,7 @@ namespace WindowsFormsApp1
 
         private void MoveStar(Star star)
         {
-            star.Z -= 30;
+            star.Z -= StarSpeed;
             if (star.Z < 1)
             {
                 star.X = random.Next(-pictureBox1.Width, pictureBox1.Width);
@@ -56,10 +65,10 @@ namespace WindowsFormsApp1
 
         private void DrawStar(Star star)
         {
-            float starSize = Map(star.Z , 0 , pictureBox1.Width , 10 , 0);
+            float starSize = Map(star.Z , 0 , pictureBox1.Width , StarSize, 0);
             float x = Map(star.X / star.Z , 0 , 1 , 0  , pictureBox1.Width) + pictureBox1.Width / 2;
             float y = Map(star.Y / star.Z, 0, 1, 0, pictureBox1.Height) + pictureBox1.Height / 2;
-             graphics.FillEllipse(Brushes.GreenYellow ,x , y , starSize , starSize);
+            graphics.FillEllipse(Brushes.GreenYellow ,x , y , starSize , starSize);
         }
 
         private float Map(float n, float start1 , float stop1 , float start2, float stop2)
