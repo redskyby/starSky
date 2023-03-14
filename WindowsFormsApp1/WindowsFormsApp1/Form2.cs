@@ -32,7 +32,22 @@ namespace WindowsFormsApp1
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            graphics.Clear(Color.Black);
 
+            foreach (var star in stars)
+            {
+                DrawStar(star);
+            }
+
+            pictureBox1.Refresh();
+        }
+
+        private void DrawStar(Star star)
+        {
+            float starSize = 7;
+            float x = Map(star.X / star.Z , 0 , 1 , 0  , pictureBox1.Width) + pictureBox1.Width / 2;
+            float y = Map(star.Y / star.Z, 0, 1, 0, pictureBox1.Height) + pictureBox1.Height / 2;
+             graphics.FillEllipse(Brushes.GreenYellow ,x , y , starSize , starSize);
         }
 
         private float Map(float n, float start1 , float stop1 , float start2, float stop2)
