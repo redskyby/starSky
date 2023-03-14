@@ -37,9 +37,19 @@ namespace WindowsFormsApp1
             foreach (var star in stars)
             {
                 DrawStar(star);
+                MoveStar(star);
             }
 
             pictureBox1.Refresh();
+        }
+
+        private void MoveStar(Star star)
+        {
+            star.Z -= 30;
+            if (star.Z < 1)
+            {
+                star.Z = random.Next(1, pictureBox1.Width);
+            }
         }
 
         private void DrawStar(Star star)
