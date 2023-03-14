@@ -48,13 +48,15 @@ namespace WindowsFormsApp1
             star.Z -= 30;
             if (star.Z < 1)
             {
+                star.X = random.Next(-pictureBox1.Width, pictureBox1.Width);
+                star.Y = random.Next(-pictureBox1.Height, pictureBox1.Height);
                 star.Z = random.Next(1, pictureBox1.Width);
             }
         }
 
         private void DrawStar(Star star)
         {
-            float starSize = 7;
+            float starSize = Map(star.Z , 0 , pictureBox1.Width , 10 , 0);
             float x = Map(star.X / star.Z , 0 , 1 , 0  , pictureBox1.Width) + pictureBox1.Width / 2;
             float y = Map(star.Y / star.Z, 0, 1, 0, pictureBox1.Height) + pictureBox1.Height / 2;
              graphics.FillEllipse(Brushes.GreenYellow ,x , y , starSize , starSize);
