@@ -12,9 +12,25 @@ namespace WindowsFormsApp1
 {
     public partial class Form2 : Form
     {
+        public class Star
+        {
+            public float X { get; set; }
+            public float Y { get; set; }
+            public float Z { get; set; }
+        }
+
+        private Star[] stars = new Star[5000];
+
         public Form2()
         {
             InitializeComponent();
         }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }
