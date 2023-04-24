@@ -37,7 +37,7 @@ namespace WindowsFormsApp1
             stars = new Star[StarСount];
             StarSpeed = Speed;
             StarSize = Size;
-    }
+        }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
